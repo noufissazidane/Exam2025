@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+   <title>Liste des Emprunts</title>
+</h:head>
+
+<h:body>
+   <h1>Liste des Emprunts en Cours</h1>
+
+   <h:dataTable value="#{bean.activeBorrowsJson}" var="borrow" border="1">
+      <h:column>
+         <f:facet name="header">ID</f:facet>
+         #{borrow.id}
+      </h:column>
+      <h:column>
+         <f:facet name="header">Utilisateur</f:facet>
+         #{borrow.user.name}
+      </h:column>
+      <h:column>
+         <f:facet name="header">Document</f:facet>
+         #{borrow.document.title}
+      </h:column>
+      <h:column>
+         <f:facet name="header">Date d'Emprunt</f:facet>
+         #{borrow.dateBorrow}
+      </h:column>
+      <h:column>
+         <f:facet name="header">Action</f:facet>
+         <h:form>
+            <h:commandButton value="Retourner" action="#{bean.returnDocument(borrow.id)}"/>
+         </h:form>
+      </h:column>
+   </h:dataTable>
+</h:body>
+</html>
